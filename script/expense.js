@@ -27,8 +27,8 @@ class ExpenseTracker{
 
   displayTransactions() {
     this.transactionList.innerHTML = '';
-    let totalIncomeAmount = 0;
-    let totalExpensesAmount = 0;
+    let totalAmount = 0;
+    let totalExpenses = 0;
 
     this.transactions.forEach((transaction, index) => {
       const li = document.createElement('li');
@@ -40,15 +40,15 @@ class ExpenseTracker{
       this.transactionList.appendChild(li);
 
       if (transaction.type === 'income') {
-        totalIncomeAmount += transaction.amount;
+        totalAmount += transaction.amount;
       } else {
-        totalExpensesAmount += transaction.amount;
+        totalExpenses += transaction.amount;
       }
     });
 
-    this.totalIncome.textContent = totalIncomeAmount.toFixed(2);
-    this.totalExpenses.textContent = totalExpensesAmount.toFixed(2);
-    this.balance.textContent = (totalIncomeAmount - totalExpensesAmount).toFixed(2);
+    this.totalIncome.textContent = totalAmount.toFixed(2);
+    this.totalExpenses.textContent = totalExpenses.toFixed(2);
+    this.balance.textContent = (totalAmount - totalExpenses).toFixed(2);
 
   }
 

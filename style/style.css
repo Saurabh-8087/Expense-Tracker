@@ -89,14 +89,13 @@ h1 {
 
 .transactions {
   width: 100%;
-  max-width: 600px; /* Optional: Set the max width for transactions section */
+  max-width: 600px; 
   padding: 10px;
   background-color: rgb(181, 192, 201);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  overflow-y: auto; /* Enable scrolling if the list grows too large */
-  height: calc(100vh - 300px); /* Adjust the height to fill remaining space */
+  height: calc(100vh - 300px); 
 }
 
 .transactions  {
