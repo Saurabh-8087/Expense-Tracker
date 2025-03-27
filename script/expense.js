@@ -2,7 +2,7 @@ class ExpenseTracker{
 
   constructor(){
 
-     this.descriptionInput = document.getElementById('description');
+    this.descriptionInput = document.getElementById('description');
     this.amountInput = document.getElementById('amount');
     this.transactionTypeSelect = document.getElementById('transactionType');
      this.addTransactionButton = document.getElementById('addTransaction');
@@ -21,78 +21,71 @@ class ExpenseTracker{
      this.displayTransactions();
  
      this.addTransactionButton.addEventListener('click', this.addTransaction);
+
+
   }
+
+  displayTransactions() {
+    this.transactionList.innerHTML = '';
+    let totalIncomeAmount = 0;
+    let totalExpensesAmount = 0;
+
+    this.transactions.forEach((transaction, index) => {
+      const li = document.createElement('li');
+      li.classList.add(transaction.type);
+      li.innerHTML = `
+        ${transaction.description}: ₹${transaction.amount} 
+        <button onclick="expenseTracker.deleteTransaction(${index})">Delete</button>
+      `;
+      this.transactionList.appendChild(li);
+
+      if (transaction.type === 'income') {
+        totalIncomeAmount += transaction.amount;
+      } else {
+        totalExpensesAmount += transaction.amount;
+      }
+    });
+
+    this.totalIncome.textContent = totalIncomeAmount.toFixed(2);
+    this.totalExpenses.textContent = totalExpensesAmount.toFixed(2);
+    this.balance.textContent = (totalIncomeAmount - totalExpensesAmount).toFixed(2);
+
+  }
+
 
   
-}
+  addTransaction() {
+    const description = this.descriptionInput.value.trim();
+    const amount = parseFloat(this.amountInput.value.trim());
+    const type = this.transactionTypeSelect.value;
 
+    if (description && !isNaN(amount)) {
+      const newTransaction = {
+        description,
+        amount,
+        type,
+      };
 
+      this.transactions.push(newTransaction);
+      localStorage.setItem('transactions', JSON.stringify(this.transactions));
 
-
-
-let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-
-// Function to display transactions
-function displayTransactions() {
-  transactionList.innerHTML = '';
-  let totalIncomeAmount = 0;
-  let totalExpensesAmount = 0;
-
-  transactions.forEach((transaction, index) => {
-    const li = document.createElement('li');
-    li.classList.add(transaction.type);
-    li.innerHTML = `
-      ${transaction.description}: ₹${transaction.amount} 
-      <button onclick="deleteTransaction(${index})">Delete</button>
-    `;
-    transactionList.appendChild(li);
-
-    if (transaction.type === 'income') {
-      totalIncomeAmount += transaction.amount;
+      this.descriptionInput.value = '';
+      this.amountInput.value = '';
+      this.displayTransactions();
     } else {
-      totalExpensesAmount += transaction.amount;
+      alert('Please enter valid description and amount.');
     }
-  });
-
-  // Update totals and balance
-  totalIncome.textContent = totalIncomeAmount.toFixed(2);
-  totalExpenses.textContent = totalExpensesAmount.toFixed(2);
-  balance.textContent = (totalIncomeAmount - totalExpensesAmount).toFixed(2);
-}
-
-// Function to add a transaction
-function addTransaction() {
-  const description = descriptionInput.value.trim();
-  const amount = parseFloat(amountInput.value.trim());
-  const type = transactionTypeSelect.value;
-
-  if (description && !isNaN(amount)) {
-    const newTransaction = {
-      description,
-      amount,
-      type,
-    };
-
-    transactions.push(newTransaction);
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-
-    descriptionInput.value = '';
-    amountInput.value = '';
-    displayTransactions();
-  } else {
-    alert('Please enter valid description and amount.');
   }
+
+
+  deleteTransaction(index) {
+    this.transactions.splice(index, 1);
+    localStorage.setItem('transactions', JSON.stringify(this.transactions));
+    this.displayTransactions();
+  }
+
+
+ 
 }
 
-// Function to delete a transaction
-function deleteTransaction(index) {
-  transactions.splice(index, 1);
-  localStorage.setItem('transactions', JSON.stringify(transactions));
-  displayTransactions();
-}
-
-// Event listener for adding transactions
-addTransactionButton.addEventListener('click', addTransaction);
-
-// Display transactions on initial load
-displayTransactions();
+const expenseTracker = new ExpenseTracker();
