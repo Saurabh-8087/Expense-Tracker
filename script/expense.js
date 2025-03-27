@@ -1,12 +1,33 @@
+class ExpenseTracker{
 
-const descriptionInput = document.getElementById('description');
-const amountInput = document.getElementById('amount');
-const transactionTypeSelect = document.getElementById('transactionType');
-const addTransactionButton = document.getElementById('addTransaction');
-const transactionList = document.getElementById('transactionList');
-const totalIncome = document.getElementById('totalIncome');
-const totalExpenses = document.getElementById('totalExpenses');
-const balance = document.getElementById('balance');
+  constructor(){
+
+     this.descriptionInput = document.getElementById('description');
+    this.amountInput = document.getElementById('amount');
+    this.transactionTypeSelect = document.getElementById('transactionType');
+     this.addTransactionButton = document.getElementById('addTransaction');
+     this.transactionList = document.getElementById('transactionList');
+     this.totalIncome = document.getElementById('totalIncome');
+     this.totalExpenses = document.getElementById('totalExpenses');
+     this.balance = document.getElementById('balance');
+
+     this.transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+
+     this.addTransaction = this.addTransaction.bind(this);
+     this.deleteTransaction = this.deleteTransaction.bind(this);
+     
+     
+     this.displayTransactions();
+ 
+     this.addTransactionButton.addEventListener('click', this.addTransaction);
+  }
+
+  
+}
+
+
+
 
 
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
