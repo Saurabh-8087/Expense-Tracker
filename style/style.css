@@ -1,3 +1,4 @@
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,75 +7,122 @@
 
 body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
 }
 
 .container {
   background-color: white;
-  padding: 30px 10px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  height: 300px;
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
+}
+
+.balance {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.balance h3 {
+  margin: 5px 0;
+  color: #333;
 }
 
 .form {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.form input, .form select {
+.form input,
+.form select,
+.form button {
   padding: 10px;
-  width: 45%;
-  margin-right: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
+  border: 1px solid #ddd;
   border-radius: 5px;
 }
 
-button:hover {
+.form input, 
+.form select {
+  width: 100%;
+}
+
+.form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.form button:hover {
   background-color: #0056b3;
+}
+
+.transactions {
+  margin-bottom: 20px;
 }
 
 .transactions ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .transactions li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  word-wrap: break-word;
 }
 
 .transactions li.income {
+  background-color: #e4f9e4;
   color: green;
 }
 
 .transactions li.expense {
+  background-color: #f8d7da;
   color: red;
 }
 
-.balance {
-  margin-top: 20px;
-  text-align: center;
+.transactions button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.balance h3 {
-  margin: 5px 0;
+.transactions button:hover {
+  background-color: darkred;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .form input, .form select, .form button {
+    width: 100%;
+  }
 }

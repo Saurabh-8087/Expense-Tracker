@@ -10,7 +10,16 @@
   <div class="container">
     <h1>Expense Tracker</h1>
 
+
+
+    <div class="balance">
+      <h3>Total Income: ₹<span id="totalIncome">0</span></h3>
+      <h3>Total Expenses: ₹<span id="totalExpenses">0</span></h3>
+      <h3>Balance: ₹<span id="balance">0</span></h3>
+    </div>
+
     <!-- Add Transaction Form -->
+
     <div class="form">
       <input type="text" id="description" placeholder="Description" required>
       <input type="number" id="amount" placeholder="Amount" required>
@@ -27,13 +36,9 @@
     </div>
 
     <!-- Balance and Totals -->
-    <div class="balance">
-      <h3>Total Income: $<span id="totalIncome">0</span></h3>
-      <h3>Total Expenses: $<span id="totalExpenses">0</span></h3>
-      <h3>Balance: $<span id="balance">0</span></h3>
-    </div>
+    
   </div>
 
-  <script src="app.js"></script>
+  <script src="script/expense.js"></script>
 </body>
 </html>
