@@ -7,36 +7,35 @@
   <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+  <!-- The container that holds the form for adding transactions -->
   <div class="container">
     <h1>Expense Tracker</h1>
 
-
-
     <div class="balance">
-      <h3>Total Income: ₹<span id="totalIncome">0</span></h3>
+      <h3 >Total Income: ₹<span id="totalIncome">0</span></h3>
       <h3>Total Expenses: ₹<span id="totalExpenses">0</span></h3>
       <h3>Balance: ₹<span id="balance">0</span></h3>
     </div>
 
-    <!-- Add Transaction Form -->
 
-    <div class="form">
-      <input type="text" id="description" placeholder="Description" required>
-      <input type="number" id="amount" placeholder="Amount" required>
-      <select id="transactionType">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <button id="addTransaction">Add Transaction</button>
+    <div class="container">
+      <div class="form">
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="number" id="amount" placeholder="Amount" required>
+        <select id="transactionType">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <button id="addTransaction">Add Transaction</button>
+      </div>
     </div>
-
-    <!-- Transactions List -->
-    <div class="transactions">
-      <ul id="transactionList"></ul>
     </div>
-
-    <!-- Balance and Totals -->
     
+  
+
+  <div class="transactions">
+    <h1 style="font-size: 20px; align-items: center; color: rgb(25, 59, 7) ; padding: 10px 10px;">Transactions</h1>
+    <ul id="transactionList"></ul>
   </div>
 
   <script src="script/expense.js"></script>
