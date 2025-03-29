@@ -16,6 +16,8 @@ class ExpenseTracker{
 
      this.addTransaction = this.addTransaction.bind(this);
      this.deleteTransaction = this.deleteTransaction.bind(this);
+
+    
      
      
      this.displayTransactions();
@@ -59,7 +61,7 @@ class ExpenseTracker{
     const amount = parseFloat(this.amountInput.value.trim());
     const type = this.transactionTypeSelect.value;
 
-    if (description && !isNaN(amount)) {
+    if (description && !isNaN(amount) && amount > 0) {
       const newTransaction = {
         description,
         amount,
